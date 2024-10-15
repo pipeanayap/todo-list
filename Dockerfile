@@ -4,6 +4,8 @@ from node
 #Crear el directorio donde va a vivir mi aplciación
 WORKDIR /app
 
+
+
 #Copiar el package.json
 
 COPY package*.json .
