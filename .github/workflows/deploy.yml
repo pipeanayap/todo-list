@@ -1,0 +1,28 @@
+name: Docker Build and Publish 
+
+on:
+  push:
+    brances:
+      - master
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Login to DockerHub
+        run: docker login -u "${{ secrets.DOCKER_USERNAME }}" -p "${{secrets.DOCKER_PASSWORD}}"
+
+      - name: build docker image 
+        run: docker build -t pipeanayaparada/todo-list:${{github.sha}} .
+
+      - name: Tag latest
+        run: docker tag pipeanayaparada/todo-list:${{github.sha}} pipeanayaparada/todo-list:latest
+
+      - name: push docker image 
+        run: |
+          docker push pipeanayaparada/todo-list:${{github.sha}}
+          docker push pipeanayaparada/todo-list:latest
+      
