@@ -11,6 +11,8 @@ services:
 
   todo-list-api:
     image: pipeanayaparada/todo-list:latest
+    # build: 
+    #   context: .
     depends_on:
       - mysql
     container_name: TodoListApp
@@ -21,6 +23,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_PORT: ${MYSQL_DOCKER_PORT}
 
 volumes:
   mysql_todo-list:

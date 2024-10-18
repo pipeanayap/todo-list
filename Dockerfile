@@ -19,10 +19,10 @@ RUN npm install
 
 COPY . .
 
-
+RUN npm run build
 
 #Comando de inicio de contenedor 
-CMD ["node","dist/src/index.js"]
+CMD ["node","dist/index.js"]
 
 #Compilar la aplicacion
-RUN npm run build
+
